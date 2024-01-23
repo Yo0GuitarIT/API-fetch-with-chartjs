@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  
+  background: #eaeaea;
+}
+
+.interviewee {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  line-height: 1em;
+  padding: .5em .8em;
+  background: white;
+  opacity: .8;
+  border-radius: 1em 0 0 0;
+}
+
+.chart-container {
+  width: 100vw;
+  height: 90vh;
+}
