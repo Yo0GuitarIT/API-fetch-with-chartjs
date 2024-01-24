@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+    <link rel="stylesheet" href="test2.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
-  <link rel="stylesheet" href="test2.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Test 2</title>
+  </head>
 
-  <title>Test 2</title>
-</head>
+  <body>
+    <main class="main">
+      <div class="chart-container">
+        <canvas id="myChart"></canvas>
+      </div>
 
-<body>
-  <div class="chart-container">
-    <canvas id="myChart"></canvas>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script type="text/javascript" src="test2.js"></script>
-  <span class="interviewee">面試者：陳祐霖</span>
-
-</body>
-
+      <span class="interviewee">面試者：陳祐霖</span>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script type="text/javascript" src="test2.js"></script>
+  </body>
 </html>

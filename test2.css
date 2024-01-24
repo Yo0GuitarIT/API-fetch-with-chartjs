@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 body {
-  font-family: 'Roboto', sans-serif;
-  
+  font-family: "Roboto", sans-serif;
   background: #eaeaea;
 }
 
@@ -12,13 +10,31 @@ body {
   bottom: 0;
   right: 0;
   line-height: 1em;
-  padding: .5em .8em;
+  padding: 0.5em 0.8em;
   background: white;
-  opacity: .8;
+  opacity: 0.8;
   border-radius: 1em 0 0 0;
 }
 
-.chart-container {
+.main {
+  background-color: bisque;
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-container {
+  background-color: #eaeaea;
+  border-radius: 20px;
+  box-shadow: 10px 5px 10px darkgray ;
+  padding: 15px;
+  width: 80%;
+  height: 80%;
+}
+
+@media (max-width: 768px) 
+{
+  
 }

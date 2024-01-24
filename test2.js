@@ -17,55 +17,59 @@ async function fetchAllData(...urls) {
   }
 }
 
-function extractData(item, style) {
-  return style === "Time" ? item.split(" ")[1] : item;
-}
-
 function getData(info, style) {
-  return info.data.map((element) => extractData(element[style], style));
+  return info.data.map((element) => element[style]);
 }
 
-function randerChart(timeData, barData, lineData) {
-  const ctx = document.getElementById("myChart");
+function getChartData(data, type, yID) {
+  return Object.values(data).map((item) => ({
+    type: type,
+    label: item.name,
+    data: item
+      .getDataWithTime()
+      .map((element) => ({ x: element[1], y: element[0] })),
+    yAxisID: yID,
+  }));
+}
 
+function getOptionConfig() {
+  return {
+    scales: {
+      x: {
+        type: "time",
+        time: {
+          unit: "minute",
+        },
+      },
+      y1: {
+        type: "linear",
+        display: true,
+        position: "left",
+      },
+      y2: {
+        type: "linear",
+        display: true,
+        position: "right",
+        grid: {
+          drawOnChartArea:false,
+        },
+      },
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+  };
+}
+
+function randerChart(barData, lineData) {
+  const ctx = document.getElementById("myChart").getContext("2d");
   new Chart(ctx, {
     data: {
       datasets: [
-        ...Object.values(barData).map((item) => ({
-          type: "bar",
-          label: item.name,
-          data: item.infoData(),
-          yAxisID: "y1",
-        })),
-        ...Object.values(lineData).map((item) => ({
-          type: "line",
-          label: item.name,
-          data: item.infoData(),
-          yAxisID: "y2",
-        })),
+        ...getChartData(barData, "bar", "y1"),
+        ...getChartData(lineData, "line", "y2"),
       ],
-      labels: timeData,
     },
-    options: {
-      scales: {
-        y1: {
-          type: "linear",
-          display: true,
-          position: "left",
-        },
-        y2: {
-          type: "linear",
-          display: true,
-          position: "right",
-          // grid line settings
-          grid: {
-            drawOnChartArea: false, // only want the grid lines for one axis to show up
-          },
-        },
-      },
-      responsive: true,
-      maintainAspectRatio: false,
-    },
+    options: getOptionConfig(),
   });
 }
 
@@ -78,15 +82,17 @@ window.onload = async function () {
     URL5
   );
 
-  const timeData = getData(info1, "Time");
-
   class completeData {
     constructor(name, info) {
       this.name = name;
       this.info = info;
     }
-    infoData() {
-      return getData(this.info, "Data");
+    getDataWithTime() {
+      const data = getData(this.info, "Data");
+      const time = getData(this.info, "Time");
+      const dataWithTime = data.map((element, index) => [element, time[index]]);
+
+      return dataWithTime;
     }
   }
 
@@ -101,5 +107,5 @@ window.onload = async function () {
     fifthData: new completeData(info5.name, info5),
   };
 
-  randerChart(timeData, barData, lineData);
+  randerChart(barData, lineData);
 };
