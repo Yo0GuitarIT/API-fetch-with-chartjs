@@ -5,12 +5,18 @@ URL4 = "https://run.mocky.io/v3/82b0ad83-4b4c-4fe7-a89d-8b88eb5c263b";
 URL5 =
   "https://run.mocky.io/v3/b27275e1-f9d5-4a0c-94a8-aa84408bffd0?mocky-delay=1500ms";
 
+function showUp() {
+  const loadingImg = document.getElementById("loading");
+  loadingImg.style.display = "none";
+}
+
 async function fetchAllData(...urls) {
   try {
     const responses = await Promise.all(urls.map((url) => fetch(url)));
     const fetchData = await Promise.all(
       responses.map((response) => response.json())
     );
+    showUp();
     return fetchData;
   } catch (error) {
     console.log(error);
@@ -42,10 +48,10 @@ function getOptionConfig() {
       x: {
         type: "time",
         time: {
-          parser: "yyyy-MM-dd HH:mm", 
+          parser: "yyyy-MM-dd HH:mm",
           unit: "minute",
           displayFormats: {
-            minute: "yyyy-MM-dd HH:mm", 
+            minute: "yyyy-MM-dd HH:mm",
           },
         },
       },
