@@ -17,8 +17,12 @@ async function fetchAllData(...urls) {
   }
 }
 
+function extact(element, style) {
+  return style === "Time" ? element[style].slice(0, -3) : element[style];
+}
+
 function getData(info, style) {
-  return info.data.map((element) => element[style]);
+  return info.data.map((element) => extact(element, style));
 }
 
 function getChartData(data, type, yID) {
@@ -38,7 +42,11 @@ function getOptionConfig() {
       x: {
         type: "time",
         time: {
+          parser: "yyyy-MM-dd HH:mm", 
           unit: "minute",
+          displayFormats: {
+            minute: "yyyy-MM-dd HH:mm", 
+          },
         },
       },
       y1: {
@@ -51,7 +59,7 @@ function getOptionConfig() {
         display: true,
         position: "right",
         grid: {
-          drawOnChartArea:false,
+          drawOnChartArea: false,
         },
       },
     },
